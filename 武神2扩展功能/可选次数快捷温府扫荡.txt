@@ -1,0 +1,2 @@
+动作栏或者地图 参数name(温府)
+cr cd/wen/damen 0 @input

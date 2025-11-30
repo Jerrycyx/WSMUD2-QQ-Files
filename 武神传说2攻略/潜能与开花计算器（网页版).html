@@ -1,0 +1,99 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta content="always" name="referrer">
+<meta name="theme-color" content="#2932e1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+<link href="http://dev.dcloud.net.cn/css/mui.min.css" rel="stylesheet" />
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+	function formatCurrencyTenThou(num) { 
+　　num = num.toString().replace(/\$|\,/g,''); 
+　　if(isNaN(num)) 
+　　num = "0"; 
+　　sign = (num == (num = Math.abs(num))); 
+　　num = Math.floor(num*10+0.50000000001); 
+　　//cents = num%10; 
+　　num = Math.floor(num/10).toString(); 
+　　for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++) 
+　　num = num.substring(0,num.length-(4*i+3))+','+ 
+　　num.substring(num.length-(4*i+3)); 
+　　return (((sign)?'':'-') + num ); 
+}
+function gen(){
+var nl= Number($("#nl").val());
+var xg= Number($("#xg").val());
+var hg= Number($("#hg").val());
+var jg=nl/100+xg*hg/10;
+		
+var sd=formatCurrencyTenThou(jg);
+		$("#fz").html(sd);
+}
+
+function dian() {
+		var c = Number($("#c").val());
+		var m = Number($("#m").val());
+		var se = $("#se").val();
+
+		var j = c + m;
+		var jj = m - c;
+		var jjc = jj / 2;
+		console.log(j + "*" + jjc + "*" + se + "*" + 5)
+		var z = j * jjc * se * 5;
+		console.log(z);
+		
+var sd=formatCurrencyTenThou(z);
+		$("#b").html(sd);
+	}
+
+</script>
+<div style="margin-left:20px;width:90%">
+	<ul class="mui-table-view" style="width:100%;margin-top:0px;margin-bottom:10px">
+		<li class="mui-table-view-cell" style="margin-top:0px"> <b class=" mui-badge-danger mui-badge-inverted" >潜能计算器</b>
+
+		</li>
+	</ul>
+	<input type="number" id="c" placeholder="初始等级" style="width:100%" class="mui-input-speech"><br/>
+	<input type="number" id="m" placeholder="目标等级" style="width:100%"><br/>
+	<select id="se" style="width:100%">
+		<option value='0'>选择技能颜色</option>
+		<option value='1' style="color: #c0c0c0;">白色</option>
+		<option value='2' style="color:#00ff00;">绿色</option>
+		<option value='3' style="color:#00ffff;">蓝色</option>
+		<option value='4' style="color:#ffff00;">黄色</option>
+		<option value='5' style="color:#912cee;">紫色</option>
+		<option value='6' style="color: #ffa600;">橙色</option>
+	</select><br/>
+	<input type="button" value="计算" onclick="dian()" style="width:100%" class="mui-btn mui-btn-danger mui-btn-outlined"><br/>
+	<ul class="mui-table-view" style="width:100%">
+		<li class="mui-table-view-cell">需要的潜能是 <b id="b" class=" mui-badge-danger mui-badge-inverted"></b>
+
+		</li>
+	</ul>
+</div>
+
+<div style="margin-left:20px;margin-top:20px;width:90%">
+	<ul class="mui-table-view" style="width:100%;margin-bottom:10px">
+		<li class="mui-table-view-cell"> <b class=" mui-badge-danger mui-badge-inverted" >开花计算器</b>
+
+		</li>
+	</ul>
+	<input type="number" id="nl" placeholder="当前内力" style="width:100%" class="mui-input-speech"><br/>
+	<input type="number" id="xg" placeholder="先天根骨" style="width:100%"><br/>
+	<input type="number" id="hg" placeholder="后天根骨" style="width:100%"><br/>
+	<input type="button" value="计算" onclick="gen()" style="width:100%" class="mui-btn mui-btn-danger mui-btn-outlined"><br/>
+	<ul class="mui-table-view" style="width:100%">
+		<li class="mui-table-view-cell">你的分值 <b id="fz" class=" mui-badge-danger mui-badge-inverted"></b>
+
+		</li>
+		<li class="mui-table-view-cell">人花分值：5000<br/> 地花分值：6500<br/> 天花分值：8000<br/>
+		</li>
+	<li class="mui-table-view-cell"><a href="http://game.wsmud.com/e/10074" style="color: blue;">游戏网址</a> 
+		</li>
+	</ul>
+</div>
+<style>
+	* {
+		margin-top: 10px;
+	}
+</style>
