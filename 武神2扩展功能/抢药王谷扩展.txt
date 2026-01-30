@@ -1,0 +1,9 @@
+不懂怎么用的看群文件里的教程，如果没抢到就改其中的时间，修改s(51)或#wait 100可以把时间控制在0.1秒精度
+
+{
+      "name": "抢药王",
+      "type": "trigger",
+      "for": "data",
+      "paras": "type(time);h(19);m(59);s(51)",
+      "content": "state stop;#wait 100;go east",
+    },
