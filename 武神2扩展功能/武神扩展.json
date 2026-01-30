@@ -1,0 +1,561 @@
+{
+  "id": "pecufcb6183",
+  "version": "0.1",
+  "items": [
+    {
+      "name": "<red>日常</red>",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "info",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "<red>杀</red>",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "kill @npc",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "<gre>捡</gre>",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "get all from @item(尸体)",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "<gre>庙</gre>",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "jh fam 0 start;go north;go north;go west",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "收",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "stopstate;goto home;go northeast;#wait 3000;dc @npc(程灵素) stopstate;pack @npc(程灵素);#wait 1000;dc @npc(程灵素) sell @pack(山楂叶);dc @npc(程灵素) sell @pack(当归);dc @npc(程灵素) sell @pack(芦荟);dc @npc(程灵素) sell @pack(石楠叶);dc @npc(程灵素) sell @pack(柴胡);dc @npc(程灵素) sell @pack(金银花);#wait 1000;dc @npc(程灵素) cai;#wait 3000;dc @npc(小昭) stopstate;pack @npc(小昭);#wait 1000;dc @npc(小昭) sell @pack(草鱼);dc @npc(小昭) sell @pack(鲤鱼);dc @npc(小昭) sell @pack(鲢鱼);dc @npc(小昭) sell @pack(鲮鱼);dc @npc(小昭) sell @pack(鲂鱼);dc @npc(小昭) sell @pack(鳊鱼);dc @npc(小昭) sell @pack(黄颡鱼);dc @npc(小昭) sell @pack(黄金鳉);dc @npc(小昭) sell @pack(太湖银鱼);dc @npc(小昭) sell @pack(孔雀鱼);dc @npc(小昭) sell @pack(反天刀);dc @npc(小昭) sell @pack(虹鳟);#wait 1000;dc @npc(小昭) diao;#wait 3000;dc @npc(双儿) stopstate;pack @npc(双儿);#wait 1000;dc @npc(双儿) sell @pack(鲤鱼);dc @npc(双儿) sell @pack(草鱼);dc @npc(双儿) sell @pack(鲢鱼);dc @npc(双儿) sell @pack(鲮鱼);dc @npc(双儿) sell @pack(鲂鱼);dc @npc(双儿) sell @pack(鳊鱼);dc @npc(双儿) sell @pack(黄颡鱼);dc @npc(双儿) sell @pack(黄金鳉);dc @npc(双儿) sell @pack(太湖银鱼);dc @npc(双儿) sell @pack(孔雀鱼);#dc @npc(双儿) sell @pack(反天刀);dc @npc(双儿) sell @pack(虹鳟);#wait 1000;dc @npc(双儿) diao;",
+      "on": {}
+    },
+    {
+      "name": "<div id=\"potentialCalculator\"style=\"display: block; width: auto; margin: 4px 10px; padding: 12px;\"><div style=\"display: flex; align-items: center; flex-wrap: wrap; gap: 12px;\"><div style=\"display: flex; align-items: center;\"><label style=\"margin-right: 5px; min-width: 60px;\">起始等级:</label><input type=\"number\"id=\"startLevel\"min=\"0\"style=\"width: 70px; padding: 4px; border: 1px solid; border-radius: 3px; background-color: transparent; color: inherit;\"></div><div style=\"display: flex; align-items: center;\"><label style=\"margin-right: 5px; min-width: 60px;\">目标等级:</label><input type=\"number\"id=\"targetLevel\"min=\"0\"style=\"width: 70px; padding: 4px; border: 1px solid; border-radius: 3px; background-color: transparent; color: inherit;\"></div><div style=\"display: flex; align-items: center; margin-left: auto;\"><label style=\"margin-right: 5px;\">所需潜能:</label><span id=\"potentialRequired\"style=\"font-weight: bold; min-width: 60px; text-align: center;\">0</span></div></div></div><script>(function(){initCalculator();function initCalculator(){replaceParentContainer();const skillInfo=getSkillInfo();if(!skillInfo)return;const startLevelInput=document.getElementById('startLevel');startLevelInput.value=skillInfo.level;const targetLevelInput=document.getElementById('targetLevel');targetLevelInput.value=skillInfo.level+100;targetLevelInput.min=skillInfo.level+1;startLevelInput.addEventListener('input',function(){const minTarget=parseInt(this.value)+1;targetLevelInput.min=minTarget;if(parseInt(targetLevelInput.value)<minTarget){targetLevelInput.value=minTarget}calculatePotential()});targetLevelInput.addEventListener('input',calculatePotential);calculatePotential()}function replaceParentContainer(){const calculator=document.getElementById('potentialCalculator');if(!calculator)return;const parent=calculator.parentElement;let commandsParent=parent;while(commandsParent&&!commandsParent.classList.contains('item-commands')){commandsParent=commandsParent.parentElement}if(commandsParent&&parent!==commandsParent){commandsParent.replaceChild(calculator,parent);commandsParent.appendChild(calculator)}}function getSkillInfo(){const calculator=document.getElementById('potentialCalculator');if(!calculator)return null;let commandsElement=calculator.parentElement;while(commandsElement&&!commandsElement.classList.contains('item-commands')){commandsElement=commandsElement.parentElement}if(!commandsElement){console.error('未找到item-commands元素');return null}const skillItem=commandsElement.previousElementSibling;if(!skillItem||!skillItem.classList.contains('skill-item')){console.error('未找到skill-item元素');return null}const skillName=skillItem.querySelector('hig')?.textContent||'未知技能';const gradeClasses=['grade0','grade1','grade2','grade3','grade4','grade5','grade6'];const gradeNames=['白色','绿色','蓝色','黄色','紫色','橙色','红色'];let skillGrade='未知';let gradeIndex=-1;for(let i=0;i<gradeClasses.length;i++){if(skillItem.classList.contains(gradeClasses[i])){skillGrade=gradeNames[i];gradeIndex=i;break}}const skillLevelText=skillItem.querySelector('.skill-level')?.textContent||'';const levelMatch=skillLevelText.match(/(\\d+)级/);const currentLevel=levelMatch?parseInt(levelMatch[1]):0;return{name:skillName,grade:skillGrade,gradeIndex:gradeIndex,level:currentLevel}}function calculatePotential(){const startLevel=parseInt(document.getElementById('startLevel').value)||0;let targetLevel=parseInt(document.getElementById('targetLevel').value)||0;if(targetLevel<=startLevel){document.getElementById('targetLevel').value=targetLevel}const skillInfo=getSkillInfo();if(!skillInfo)return;const formulaParams=[{x:2,y:5},{x:2,y:10},{x:7,y:15},{x:10,y:20},{x:12,y:25},{x:15,y:30},{x:20,y:35}];let params=formulaParams[0];if(skillInfo.gradeIndex>=0&&skillInfo.gradeIndex<formulaParams.length){params=formulaParams[skillInfo.gradeIndex]}const d=startLevel;const e=targetLevel;const x=params.x;const y=params.y;const result=(e-d)*x+y*((e*(e-1)/2)-(d*(d-1)/2));document.getElementById('potentialRequired').textContent=Math.round(result)}})();</script>",
+      "type": "button",
+      "for": "skill",
+      "paras": "",
+      "content": " ",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "遗忘到",
+      "type": "button",
+      "for": "skill",
+      "paras": "",
+      "content": "fangqi @id @input",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "躺",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": ";enable sword tangshijianfa",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "立",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "enable sword xiaowuxianggong",
+      "on": {}
+    },
+    {
+      "name": "挖",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "goto kuang",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "练习到",
+      "type": "button",
+      "for": "skill",
+      "paras": "",
+      "content": "lianxi @id @input",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "拆石头",
+      "type": "button",
+      "for": "pack",
+      "paras": "",
+      "content": "unxiangqian @id",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "当",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "jh fam 0 start;go south;go east;select @npc(唐楠);list @npc(唐楠)",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "<Colors>回</Colors>",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "goto home;go west",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "喜宴",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "jh fam 0 start;go north;go north;go east;go up;give v5idfe06b42 10000 money",
+      "on": {}
+    },
+    {
+      "name": "下上",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "go south;go north;liaoshang",
+      "on": {}
+    },
+    {
+      "name": "重置",
+      "type": "button",
+      "for": "pack",
+      "paras": "",
+      "content": "unjinglian @id",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "🥚",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "dang",
+      "on": {}
+    },
+    {
+      "name": "<red>剑</red>",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "pack none;eq 1p121040bbfe",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "学习",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "cha b036100403b6;#wait 2071;xue beimingshengong 300",
+      "on": {}
+    },
+    {
+      "name": "s三国杀",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "kill @npc;#wait 1;perform force.wuwo;#wait 535;perform unarmed.zhong",
+      "on": {}
+    },
+    {
+      "name": "x三国杀",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "#wait 250;kill @npc;#wait 1;perform force.wuwo;#wait 545;perform parry.yi;#wait 525;perform unarmed.san;#wait 525;perform unarmed.po;#wait 520;perform throwing.jiang",
+      "on": {}
+    },
+    {
+      "name": "加速",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "jh fb 22 start1;#wait 943;cr huashan/yihua/shandao;#wait 860;go south;#wait 162;go south;#wait 266;go south;#wait 96;go south;#wait 154;go south;#wait 120;go south;#wait 146;go south;#wait 116;go south;#wait 134;go south;#wait 137;go south;#wait 130;go south;#wait 136;go south;#wait 137;go south;#wait 146;go south;#wait 500;kill @npc;#wait 1;perform force.wuwo;#wait 518;perform unarmed.san;#wait 525;perform unarmed.po;#wait 520;perform throwing.jiang;#wait 4000;go south;#wait 500;go south;#wait 500;kill @npc;#wait 1;perform force.wuwo;#wait 518;perform unarmed.san;#wait 525;perform unarmed.po;#wait 520;perform throwing.jiang;#wait 4000;go south;#wait 250;kill @npc;#wait 1;perform force.wuwo;#wait 518;perform unarmed.san;#wait 525;perform unarmed.po;#wait 520;perform throwing.jiang",
+      "on": {}
+    },
+    {
+      "name": "杀邀月",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "kill @npc(邀月);#wait 1;perform force.wuwo;#wait 540;perform unarmed.zhong;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;#wait 600;go southeast;",
+      "on": {}
+    },
+    {
+      "name": "杀 涟星",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "kill @npc(涟星);#wait 1;perform force.wuwo;#wait 540;perform unarmed.zhong;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;#wait 600;go southwest;",
+      "on": {}
+    },
+    {
+      "name": "完成",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "go down;#wait 1;fire;#wait 1;go west;#wait 1000;kill @npc;#wait 1;perform unarmed.po;#wait 500;open xia;#wait 500;cr",
+      "on": {}
+    },
+    {
+      "name": "测试",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "go north;#wait 1;actions;#wait 500;kill @npc",
+      "on": {}
+    },
+    {
+      "name": "学习到",
+      "type": "button",
+      "for": "mskill",
+      "paras": "",
+      "content": "xue @input @id from @master",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "钓",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "goto home;go northeast;diao",
+      "on": {}
+    },
+    {
+      "name": "帮丐",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "goto bp;select x0e7102ba0e3;jrfb x0e7102ba0e3;goto fam4;go down;go east;select 4xp71037836f;go east;go east;go east;select hsmj10378373;go east;go up",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "蓬莱鱼饵",
+      "type": "button",
+      "for": "map",
+      "paras": "",
+      "content": "jh ar 3 start;go east;#wait 723;go north;go northeast;go northeast;go north;go northwest;go north;go north;go north;go north;go north;go west;go south",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "衙门",
+      "type": "button",
+      "for": "map",
+      "paras": "",
+      "content": "jh fam 0 start;go west;go north;go north",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "悟性技能组",
+      "type": "button",
+      "for": "skill",
+      "paras": "",
+      "content": ";enable unarmed canhezhi;enable force shenzhaojing;enable dodge tiannanbu",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "1",
+      "type": "button",
+      "for": "skill",
+      "paras": "",
+      "content": "rel 31nafd5eeb8 diaoyu;#wait 7875;goto kuang"
+    },
+    {
+      "name": "<div id=\"jinglian-plus-plus\"style=\"display: block;\"><div style=\"display: flex; flex-direction: column;\"><div style=\"display: flex; align-items: center; gap: 8px; margin: 4px 16px;\"><div id=\"jinglian-slider\"style=\"flex: 1; min-width: 0;\"><input type=\"range\"min=\"0\"max=\"12\"step=\"1\"value=\"0\"id=\"jinglian-slider-input\"style=\"width: 100%; height: 2px; outline: none;\"/></div><div id=\"jinglian-slider-number\"style=\"min-width: 2em; text-align: center; font-weight: bold;\"></div></div><div style=\"display: flex; justify-content: space-between; align-items: center; padding: 0 4px; margin: 4px 16px\"><div style=\"display: flex; align-items: center; gap: 8px\"><span>⟶</span><span class=\"item-commands\"><span id=\"jinglian-preview\"></span></span></div><div><span id=\"jinglian-cost\"></span><span>&nbsp;玄晶</span></div></div></div></div><script>\"use strict\";(function(){const container=document.getElementById(\"jinglian-plus-plus\");function clearSelf(isError=false,errorMessage=\"无\"){if(isError){container.innerHTML=`<hir>「精炼++」无法在此环境下运行，错误信息：${errorMessage}</hir>`}else{container.remove()}}if(!container){console.error(\"[Jinglian++] Fail to get jinglian++ element\");return}const parent=container.parentElement;if(parent.classList.contains(\"title\")&&parent.parentElement.classList.contains(\"setting-item\")&&parent.parentElement.parentElement.classList.contains(\"extend-list\")){container.style.display=\"inline-block\";container.innerHTML=`<hig>「精炼++」扩展已加载，请在背包中查看</hig>`;return}const itemCommands=parent.parentElement;if(!itemCommands||!itemCommands.classList.contains(\"item-commands\")){console.log(\"[Jinglian++] Fail to get item-command element\");clearSelf(true,\"无法获取 item-command 元素\");return}itemCommands.replaceChild(container,parent);const inGameID=(function(){for(const commandSpan of itemCommands.children){if(commandSpan.tagName===\"SPAN\"&&commandSpan.innerHTML===\"精炼\"){const command=commandSpan.getAttribute(\"cmd\");const match=command.match(/^jinglian\\s+([a-z0-9]+)$/);if(match){return match[1]}else{continue}}}return\"\"})();if(!inGameID){clearSelf();return}const toolContainer=itemCommands.parentElement;const toolElm=toolContainer.classList.contains(\"obj-list\")?itemCommands.previousElementSibling.firstChild:toolContainer.firstChild;const toolName=toolElm.textContent.replace(/^[★☆]+/,'');const toolStars=toolElm.textContent.match(/^[★☆]*/)[0];const toolJinglianTimes=[...toolStars].reduce((sum,char)=>sum+(char==='★'?2:1),0);const toolLevels=[{tag:\"WHT\",name:\"白色\",base:0},{tag:\"HIG\",name:\"绿色\",base:2},{tag:\"HIC\",name:\"蓝色\",base:4},{tag:\"HIY\",name:\"黄色\",base:6},{tag:\"HIZ\",name:\"紫色\",base:8},{tag:\"HIO\",name:\"橙色\",base:10},];const toolLevel=(function(){for(const toolLevelsItem of toolLevels){if(toolElm.tagName===toolLevelsItem.tag){return toolLevelsItem}}return null})();if(toolLevel.name===\"白色\"){clearSelf();return}if(!toolLevel){console.log(\"[Jinglian++] not any available color\");clearSelf(true,\"不支持此颜色等级\");return}if(typeof window.xuanjing==='undefined'||window.xuanjing===null){window.xuanjing=0}if(toolContainer.classList.contains(\"obj-list\")){for(const packItem of toolContainer.children){if(packItem.tagName===\"DIV\"&&packItem.classList.contains(\"obj-item\")&&packItem.classList.contains(\"grade1\")&&packItem.innerHTML.match(/^<hig>玄晶<\\/hig><span class=\"obj-value\">\\d+块<\\/span>$/)){window.xuanjing=parseInt(packItem.textContent.match(/\\d+/)[0]);break}}}const jinglianCost=document.getElementById(\"jinglian-cost\");const jinglianPreview=document.getElementById(\"jinglian-preview\");const jinglianSliderNumber=document.getElementById(\"jinglian-slider-number\");const jinglianPreviewContent=document.createElement(toolElm.tagName);jinglianPreviewContent.textContent=toolStars+toolName;jinglianPreview.appendChild(jinglianPreviewContent);let previewJinglianTimes=toolJinglianTimes;const jinglianSliderInput=document.getElementById(\"jinglian-slider-input\");jinglianSliderInput.addEventListener(\"click\",(event)=>{event.stopPropagation()});jinglianSliderInput.value=toolJinglianTimes.toString();UpdatePreview();jinglianSliderInput.addEventListener(\"input\",(event)=>{previewJinglianTimes=parseInt(event.target.value);UpdatePreview()});function CalculateCost(times){return toolLevel.base*(2**times-1)}function UpdatePreview(){jinglianSliderNumber.textContent=`+${previewJinglianTimes}`;jinglianSliderNumber.style.color=[\"#C0C0C0\",\"#00FF00\",\"#00FF00\",\"#00FFFF\",\"#00FFFF\",\"#FFFF00\",\"#FFFF00\",\"#912CEE\",\"#912CEE\",\"#FFA500\",\"#FFA500\",\"#FF4500\",\"#FF4500\",][previewJinglianTimes];const alreadyCost=CalculateCost(toolJinglianTimes);const previewCost=CalculateCost(previewJinglianTimes);if(previewJinglianTimes<toolJinglianTimes){jinglianCost.textContent=`${xuanjing}+${alreadyCost-previewCost}`;jinglianCost.style.color=\"#00FFFF\";jinglianPreview.setAttribute(\"cmd\",(\"#unjinglian \"+inGameID+\";\"+(\"jinglian \"+inGameID+\" ok;\").repeat(previewJinglianTimes)).slice(0,-1));jinglianPreview.style.cursor=\"pointer\"}else if(previewJinglianTimes===toolJinglianTimes){jinglianCost.textContent=`${xuanjing}`;jinglianCost.style.color=\"#C0C0C0\";jinglianPreview.removeAttribute(\"cmd\");jinglianPreview.style.cursor=\"default\"}else if(previewJinglianTimes>toolJinglianTimes){jinglianCost.textContent=`${xuanjing}-${previewCost-alreadyCost}`;if(xuanjing>=(previewCost-alreadyCost)){jinglianCost.style.color=\"#00FF00\";jinglianPreview.setAttribute(\"cmd\",(\"#\"+(\"jinglian \"+inGameID+\" ok;\").repeat(previewJinglianTimes-toolJinglianTimes)).slice(0,-1));jinglianPreview.style.cursor=\"pointer\"}else{jinglianCost.style.color=\"#800000\";jinglianPreview.removeAttribute(\"cmd\");jinglianPreview.style.cursor=\"not-allowed\"}}else{console.log(\"[Jinglian++] WTF???\")}jinglianPreviewContent.textContent=\"★\".repeat(parseInt(previewJinglianTimes/2))+\"☆\".repeat(previewJinglianTimes%2)+toolName}})();function runCommand(cmd){const tempoElm=document.createElement(\"div\");tempoElm.setAttribute(\"cmd\",cmd);tempoElm.click();console.log(`[Jinglian++]Executed\\\"${cmd}\\\"`);tempoElm.remove()}</script>",
+      "type": "button",
+      "for": "pack",
+      "paras": "",
+      "content": " ",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "公共丐",
+      "type": "button",
+      "for": "map",
+      "paras": "",
+      "content": "goto fam3 GAIBANG;go down;go east;go east;go east;go east;go east;go up",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "挖",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "goto home;go northeast;xkwk",
+      "on": {}
+    },
+    {
+      "name": "拍卖",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "pm list",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "领取",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "message pm;receive pm",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "无招明玉",
+      "type": "button",
+      "for": "skill",
+      "paras": "",
+      "content": "enable unarmed xiaowuxianggong2;enable force mingyugong;enable dodge lingboweibu2",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "越女蛤蟆蹲",
+      "type": "button",
+      "for": "skill",
+      "paras": "",
+      "content": "cha none;enable force hamagong;enable unarmed hamagong;enable sword yuenvjianfa",
+      "on": {}
+    },
+    {
+      "name": "全部白板",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "unjinglian @pack(★)",
+      "on": {}
+    },
+    {
+      "name": "全部白板",
+      "type": "button",
+      "for": "pack",
+      "paras": "",
+      "content": "unjinglian @pack(★)",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "蛤蟆蹲11秒",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "kill @npc;#wait 12001;perform force.chong",
+      "on": {}
+    },
+    {
+      "name": "无招明玉",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "perform force.power;#wait 0;perform force.wang;#wait 550;kill @npc;#wait 0;perform sword.wuwo;",
+      "on": {}
+    },
+    {
+      "name": "明玉忘情",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "perform force.power;#wait 530;perform force.wang",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "抓人",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "perform dodge.lingbo;go north;go south;select dk6m104e339a;zhua 8guw104e2f72",
+      "on": {}
+    },
+    {
+      "name": "打塔",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "go enter;#wait 430;perform parry.yi;#wait 530;perform sword.wuwo;#wait 530;perform unarmed.wuwo;",
+      "on": {}
+    },
+    {
+      "name": "练习套",
+      "type": "button",
+      "for": "pack",
+      "paras": "",
+      "content": "pack none;#wait 5208;jinglian lkncfcb73c6 ok;#wait 0;jinglian lkncfcb73c6 ok;#wait 0;jinglian lkncfcb73c6 ok;#wait 1;jinglian lkncfcb73c6 ok;#wait 0;jinglian lkncfcb73c6 ok;#wait 0;jinglian lkncfcb73c6 ok;#wait 1;jinglian lkncfcb73c6 ok;#wait 0;jinglian lkncfcb73c6 ok;#wait 0;jinglian lkncfcb73c6 ok;#wait 1;jinglian lkncfcb73c6 ok;#wait 0;jinglian lkncfcb73c6 ok;#wait 0;;#wait 2482;jinglian lkncfcb73c6;#wait 804;jinglian lkncfcb73c6 ok;#wait 6033;jinglian oc38102c9802 ok;#wait 0;jinglian oc38102c9802 ok;#wait 1;jinglian oc38102c9802 ok;#wait 0;jinglian oc38102c9802 ok;#wait 0;jinglian oc38102c9802 ok;#wait 1;jinglian oc38102c9802 ok;#wait 0;jinglian oc38102c9802 ok;#wait 1;jinglian oc38102c9802 ok;#wait 0;jinglian oc38102c9802 ok;#wait 0;jinglian oc38102c9802 ok;#wait 0;jinglian oc38102c9802 ok;#wait 0;;#wait 3096;jinglian ulkr10035293 ok;#wait 1;jinglian ulkr10035293 ok;#wait 0;jinglian ulkr10035293 ok;#wait 0;jinglian ulkr10035293 ok;#wait 0;jinglian ulkr10035293 ok;#wait 1;jinglian ulkr10035293 ok;#wait 0;jinglian ulkr10035293 ok;#wait 0;jinglian ulkr10035293 ok;#wait 1;jinglian ulkr10035293 ok;#wait 0;jinglian ulkr10035293 ok;#wait 1;jinglian ulkr10035293 ok;#wait 0;;#wait 3662;jinglian ulkr10035293;#wait 1030;jinglian ulkr10035293 ok;#wait 2569;jinglian o4kc102c3290 ok;#wait 1;jinglian o4kc102c3290 ok;#wait 0;jinglian o4kc102c3290 ok;#wait 0;jinglian o4kc102c3290 ok;#wait 1;jinglian o4kc102c3290 ok;#wait 0;jinglian o4kc102c3290 ok;#wait 0;jinglian o4kc102c3290 ok;#wait 1;jinglian o4kc102c3290 ok;#wait 0;jinglian o4kc102c3290 ok;#wait 0;jinglian o4kc102c3290 ok;#wait 1;jinglian o4kc102c3290 ok;#wait 0;;#wait 3758;jinglian tznn102c9668 ok;#wait 1;jinglian tznn102c9668 ok;#wait 0;jinglian tznn102c9668 ok;#wait 0;jinglian tznn102c9668 ok;#wait 0;jinglian tznn102c9668 ok;#wait 0;jinglian tznn102c9668 ok;#wait 1;jinglian tznn102c9668 ok;#wait 0;jinglian tznn102c9668 ok;#wait 0;jinglian tznn102c9668 ok;#wait 0;jinglian tznn102c9668 ok;#wait 0;;#wait 3138;jinglian 0dql10039bac ok;#wait 0;jinglian 0dql10039bac ok;#wait 0;jinglian 0dql10039bac ok;#wait 0;jinglian 0dql10039bac ok;#wait 1;jinglian 0dql10039bac ok;#wait 0;jinglian 0dql10039bac ok;#wait 0;jinglian 0dql10039bac ok;#wait 0;jinglian 0dql10039bac ok;#wait 0;jinglian 0dql10039bac ok;#wait 0;jinglian 0dql10039bac ok;#wait 0;jinglian 0dql10039bac ok;#wait 0;;#wait 3454;jinglian usds102c963f ok;#wait 0;jinglian usds102c963f ok;#wait 0;jinglian usds102c963f ok;#wait 0;jinglian usds102c963f ok;#wait 0;jinglian usds102c963f ok;#wait 0;jinglian usds102c963f ok;#wait 0;jinglian usds102c963f ok;#wait 0;jinglian usds102c963f ok;#wait 0;jinglian usds102c963f ok;#wait 0;jinglian usds102c963f ok;#wait 0;jinglian usds102c963f ok;#wait 1;;#wait 8345;jinglian whhh10511eb3 ok;#wait 1;jinglian whhh10511eb3 ok;#wait 0;jinglian whhh10511eb3 ok;#wait 0;jinglian whhh10511eb3 ok;#wait 1;jinglian whhh10511eb3 ok;#wait 0;jinglian whhh10511eb3 ok;#wait 0;jinglian whhh10511eb3 ok;#wait 1;jinglian whhh10511eb3 ok;#wait 0;jinglian whhh10511eb3 ok;#wait 0;jinglian whhh10511eb3 ok;#wait 0;jinglian whhh10511eb3 ok;#wait 1;;#wait 4094;jinglian ech3102c9cab ok;#wait 0;jinglian ech3102c9cab ok;#wait 0;jinglian ech3102c9cab ok;#wait 1;jinglian ech3102c9cab ok;#wait 1;jinglian ech3102c9cab ok;#wait 0;jinglian ech3102c9cab ok;#wait 1;jinglian ech3102c9cab ok;#wait 0;jinglian ech3102c9cab ok;#wait 0;jinglian ech3102c9cab ok;#wait 1;jinglian ech3102c9cab ok;#wait 0;jinglian ech3102c9cab ok;#wait 0;;#wait 7282;jinglian xqx7fd28c1f ok;#wait 0;jinglian xqx7fd28c1f ok;#wait 1;jinglian xqx7fd28c1f ok;#wait 0;jinglian xqx7fd28c1f ok;#wait 0;jinglian xqx7fd28c1f ok;#wait 1;jinglian xqx7fd28c1f ok;#wait 0;jinglian xqx7fd28c1f ok;#wait 0;jinglian xqx7fd28c1f ok;#wait 2;jinglian xqx7fd28c1f ok;#wait 0;jinglian xqx7fd28c1f ok;#wait 0;",
+      "on": {}
+    },
+    {
+      "name": "精炼10",
+      "type": "button",
+      "for": "pack",
+      "paras": "",
+      "content": "jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "精炼11",
+      "type": "button",
+      "for": "pack",
+      "paras": "",
+      "content": "jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "打开",
+      "type": "button",
+      "for": "pack",
+      "paras": "",
+      "content": "store",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "药王谷炼药",
+      "type": "button",
+      "for": "map",
+      "paras": "",
+      "content": "jh ar 6 start;go north;go north;go north;go east;go east;go east;go east;go north;go north;go north;go north;go west",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "请安",
+      "type": "button",
+      "for": "map",
+      "paras": "",
+      "content": "sx greet",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "悟性",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "#menu pack;#wait 200;jinglian @pack(&lt;HIY&gt;龙纹剑&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;龙纹剑&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;龙纹剑&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;龙纹剑&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;龙纹剑&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;龙纹剑&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;龙纹剑&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;龙纹剑&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;龙纹剑&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;龙纹剑&lt;/HIY&gt;) ok;#wait 1000;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;泼墨衫&lt;/HIY&gt;) ok;#wait 1000;jinglian @pack(&lt;HIZ&gt;真武道靴&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;真武道靴&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;真武道靴&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;真武道靴&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;真武道靴&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;真武道靴&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;真武道靴&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;真武道靴&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;真武道靴&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;真武道靴&lt;/HIZ&gt;) ok;#wait 1000;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;涟星的冰玉簪&lt;/HIY&gt;) ok;#wait 1000;jinglian @pack(&lt;HIY&gt;将军帔&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;将军帔&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;将军帔&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;将军帔&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;将军帔&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;将军帔&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;将军帔&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;将军帔&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;将军帔&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;将军帔&lt;/HIY&gt;) ok;#wait 1000;jinglian @pack(&lt;HIY&gt;黑白戒&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;黑白戒&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;黑白戒&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;黑白戒&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;黑白戒&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;黑白戒&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;黑白戒&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;黑白戒&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;黑白戒&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;黑白戒&lt;/HIY&gt;) ok;#wait 1000;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;杨不悔的项链&lt;/HIZ&gt;) ok;#wait 1000;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;花无缺的玉佩&lt;/HIY&gt;) ok;#wait 1000;jinglian @pack(&lt;HIZ&gt;火灵手环&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;火灵手环&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;火灵手环&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;火灵手环&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;火灵手环&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;火灵手环&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;火灵手环&lt;/HIZ&gt;) ok;jinglian @pack(&lt;HIZ&gt;火灵手环&lt;/HIZ&gt;) ok;#wait 1000;jinglian @pack(&lt;HIY&gt;焦尾弦&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;焦尾弦&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;焦尾弦&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;焦尾弦&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;焦尾弦&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;焦尾弦&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;焦尾弦&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;焦尾弦&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;焦尾弦&lt;/HIY&gt;) ok;jinglian @pack(&lt;HIY&gt;焦尾弦&lt;/HIY&gt;) ok;#wait 1000;",
+      "on": {}
+    },
+    {
+      "name": "换折梅",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "enable parry zhemeishou",
+      "on": {}
+    },
+    {
+      "name": "换移花",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "enable parry yihuajiemu",
+      "on": {}
+    },
+    {
+      "name": "比试杨过",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "go out;go enter;#wait 520;enable parry zhemeishou;#wait 520;select ok0i1060813b;#wait 520;fight ok0i1060813b;#wait 528;perform parry.duo",
+      "on": {}
+    },
+    {
+      "name": "精炼12",
+      "type": "button",
+      "for": "pack",
+      "paras": "",
+      "content": "jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;jinglian @id ok;",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "公共峨眉",
+      "type": "button",
+      "for": "map",
+      "paras": "",
+      "content": "goto fam3 EMEI;go west;go south;go west;go south;go south",
+      "on": {
+        "pecufcb6183": 1
+      }
+    },
+    {
+      "name": "1",
+      "type": "button",
+      "for": "action",
+      "paras": "",
+      "content": "duihuan0 ",
+      "on": {
+        "pecufcb6183": 1
+      }
+    }
+  ]
+}

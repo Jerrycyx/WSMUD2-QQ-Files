@@ -1,0 +1,48 @@
+背包道具
+name 物品名字
+can_combine 是否可合成
+can_eq 是否可装备
+can_open 是否可打开
+can_study 是否可学习
+can_use 是否可使用
+count 数量
+grade 颜色
+is_lock 是否锁定
+otype  物品分类
+value 物品价值
+unit 物品单位
+
+动作栏
+name 房间名字
+desc 房间描述
+path 房间唯一路径
+
+技能类（包括随从及师傅技能）
+can_enables 可准备位置
+exp 技能经验
+id 技能id
+level 技能等级
+name 技能名字
+grade 技能颜色
+
+房间物品及生物
+name 物品或生物的名字
+id 物品或生物的id
+follower 是否是随从
+master 是否是师傅
+trader 是否是商人
+player 是否是玩家
+max_hp 最大气血
+max_mp 最大内力
+hp 当前气血
+mp 当前内力
+
+地图
+name 地图名字
+index 地图序号
+type 地图种类
+
+
+注1 其中颜色都是0对应白 后续递增1
+注2 其中是否xx，1对应是，0对应否
+注3 其中物品类型 从0开始递增1，分别对应道具、秘籍、宝石、资源、装备 
